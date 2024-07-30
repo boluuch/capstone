@@ -3,6 +3,9 @@ from rest_framework import generics, viewsets
 from rest_framework.decorators import api_view
 from .models import Menu, Booking
 from .serializers import UserSerializer, BookingSerializer
+from django.contrib.auth.models import User
+from rest_framework.authentication import TokenAuthentication, SessionAuthentication
+from rest_framework.permissions import IsAuthenticated
 
 
 # Create your views here.
@@ -21,9 +24,8 @@ class BookingViewSet(viewsets.ModelViewSet):
     serializer_class = BookingSerializer
     queryset = Booking.objects.all()
     
-"""
 class UserViewSet(viewsets.ModelViewSet):
-    queryset = User.object.all()
+    queryset = User.objects.all()
     serializer_class = UserSerializer
-    Permission classes = [Perminssions.IsAuthenticated]
- """   
+    authentication_classes = [TokenAuthentication, SessionAuthentication]
+    permission_classes = [IsAuthenticated]

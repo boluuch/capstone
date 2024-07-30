@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
+from rest_framework.authentication import TokenAuthentication, SessionAuthentication
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -26,6 +28,7 @@ SECRET_KEY = 'django-insecure-vtwa-sea_e8(fmn*6!0prta71fa5(_hqwsev87&-+xq@r)r-xs
 DEBUG = True
 
 ALLOWED_HOSTS = []
+
 
 DJOSER = {"USER_ID_FIELD":'username'}
 
@@ -133,3 +136,13 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.TokenAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    ),
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    ),
+}
