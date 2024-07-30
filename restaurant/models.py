@@ -10,7 +10,7 @@ class Menu(models.Model):
     available = models.BooleanField(default=True)
 
     def __str__(self):
-        return self.name
+        return f'{self.name} : {str(self.price)}'
 
 class Booking(models.Model):
     customer_name = models.CharField(max_length=100)
